@@ -226,9 +226,9 @@ Video.getCachedVideos().$promise.then(function(data){
                 </div>
                 <div class="fragment">
                     <pre><code>angular.module('myApp')
-.constant('FUNCHAT-API', 'http://funchat-api.herokuapp.com/messages')
-.factory('MessageResource', function($resource, FUNCHAT-API) {
-    return $resource(FUNCHAT-API + '/:messageId', {messageId:'@messageId'});
+.constant('FUNCHATAPI', 'http://funchat-api.herokuapp.com/messages')
+.factory('MessageResource', function($resource, FUNCHATAPI) {
+    return $resource(FUNCHATAPI + '/:messageId', {messageId:'@messageId'});
 });
 // now you can inject MessageResource anywhere you want in myApp</code></pre>
                 </div>
@@ -252,10 +252,10 @@ Video.getCachedVideos().$promise.then(function(data){
                 <pre><code>
 angular.module('myApp')
 
-.constant('FUNCHAT-API', 'http://funchat-api.herokuapp.com/messages')
+.constant('FUNCHATAPI', 'http://funchat-api.herokuapp.com/messages')
 
-.factory('MessageResource', function($resource, FUNCHAT-API) {
-    return $resource(FUNCHAT-API + '/messages',
+.factory('MessageResource', function($resource, FUNCHATAPI) {
+    return $resource(FUNCHATAPI + '/messages',
     {messageTypes:["ORIGINAL","EDITED"]}, {
         getMessages: {method: "GET", isArray: true, cache: true}
     });
