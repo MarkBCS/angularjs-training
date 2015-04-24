@@ -61,6 +61,22 @@ Tarkista, että projektin kehitysympäristö käynnistyy komennolla:
 - Jos kehitysympäristö ei käynnisty, tarkista, että yllämainitut sovellukset
 toimivat komentoriviltä.
 
+## Lisäohjeet Yeoman/Gulp -projektipohjan käyttöön
+
+Asenna itsellesi Yeoman, Gulp sekä Angular-projektigeneraattori (generator-gulp-angular)
+
+    npm install -g yo
+    npm install -g gulp
+    npm install -g generator-gulp-angular
+
+Tee uusi kansio ja generoi sinne testiprojekti:
+
+    mkdir test1
+    cd test1
+    yo gulp-angular mytestapp
+
+Voit tehdä testigeneroinnin millä tahansa valinnoilla.
+
 ## Lisäohjeet testausosuutta varten
 
 Jos osallistut kurssin testausosuudelle, varmistathan lisäksi, että seuraavat testaustyövälineet on asennettu:
