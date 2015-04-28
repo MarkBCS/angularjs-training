@@ -1,3 +1,3 @@
-angular.module('todosApp', [])
+angular.module('funtodoApp', [])
   .controller('TodosController', function() {
   });
