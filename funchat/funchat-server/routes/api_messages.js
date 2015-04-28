@@ -8,7 +8,7 @@ router
 		var limit = Number(req.query.limit) || 9999;
 		Message
 			.find()
-			.sort('+created')
+			.sort('-created')
 			.limit(limit)
 			.exec(function(err, messages) {
 				if (err) {
