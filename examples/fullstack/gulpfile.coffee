@@ -22,21 +22,21 @@ production   = process.env.NODE_ENV is 'production'
 
 config =
   scripts:
-    source: './src/js/main.js'
+    source: './front/js/main.js'
     extensions: ['.coffee']
     destination: './public/js/'
     filename: 'bundle.js'
   templates:
-    source: './src/html/*.jade'
-    watch: './src/html/*.jade'
+    source: './front/html/*.jade'
+    watch: './front/html/*.jade'
     destination: './public/'
   styles:
-    source: './src/css/style.styl'
-    watch: './src/css/*.styl'
+    source: './front/css/style.styl'
+    watch: './front/css/*.styl'
     destination: './public/css/'
   assets:
-    source: './src/assets/**/*.*'
-    watch: './src/assets/**/*.*'
+    source: './front/assets/**/*.*'
+    watch: './front/assets/**/*.*'
     destination: './public/'
 
 handleError = (err) ->
