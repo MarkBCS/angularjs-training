@@ -1,9 +1,6 @@
 {
   "name": "gulp-template",
   "version": "1.0.0",
-  "description": "Project template for gulp.js",
-  "author": "Riku Rouvila <riku.rouvila@leonidasoy.fi>",
-  "license": "MIT",
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp",
