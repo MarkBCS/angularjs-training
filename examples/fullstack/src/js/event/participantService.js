@@ -9,7 +9,8 @@ module.exports = ['$http', ($http) => {
     {name: 'Aaro'},
     {name: 'Cecilia'}]
 
-    return {
-      participants: participantList
-    }
+  return {
+    participants: participantList
+  }
+  
 }]
