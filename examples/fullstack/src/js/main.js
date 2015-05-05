@@ -1,6 +1,8 @@
-angular = require('angular')
+let $       = require('jquery')
+let angular = require('angular')
 
-let foob = () =>
-  console.log('foob')
 
-foob()
+$(()  => {
+  let root = $('#root')
+  angular.bootstrap(root)
+})
