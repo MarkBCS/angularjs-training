@@ -17,6 +17,7 @@ streamify    = require 'gulp-streamify'
 stylus       = require 'gulp-stylus'
 uglify       = require 'gulp-uglify'
 watchify     = require 'watchify'
+nodemon      = require 'nodemon'
 
 production   = process.env.NODE_ENV is 'production'
 
@@ -100,11 +101,13 @@ gulp.task 'assets', ->
     .pipe gulp.dest config.assets.destination
 
 gulp.task 'server', ->
+  nodemon
+    script: 'server.js'
+    watch:  'server'
   browserSync
     open: false
     port: 9001
-    server:
-      baseDir: './public'
+    proxy: 'localhost:9000'
 
 gulp.task 'watch', ->
   gulp.watch config.templates.watch, ['templates']

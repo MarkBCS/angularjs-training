@@ -1,16 +1,9 @@
 module.exports = ['$http', ($http) => {
 
-  // no $http yet
-  let participantList = [
-    {name: 'Jaakko'},
-    {name: 'Tapio'},
-    {name: 'Juha'},
-    {name: 'Mikko'},
-    {name: 'Aaro'},
-    {name: 'Cecilia'}]
+  let participants = $http.get('/api/participants')
 
   return {
-    participants: participantList
+    participants: participants
   }
-  
+
 }]
