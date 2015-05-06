@@ -70,7 +70,7 @@ Tarkista, että projektin kehitysympäristö käynnistyy komennolla:
 - Jos kehitysympäristö ei käynnisty, tarkista, että yllämainitut sovellukset
 toimivat komentoriviltä.
 
-## Lisäohjeet testausosuutta varten
+## Lisäohjeet testausosuutta varten (2. päivä)
 
 Jos osallistut kurssin testausosuudelle, varmistathan lisäksi, että seuraavat testaustyövälineet on asennettu:
 
