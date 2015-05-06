@@ -44,19 +44,6 @@
         </section>
 
         <section>
-            <section>
-                <h2>Bonus: Localizing AngularJS applications</h2>
-            </section>
-            <section>
-                <ul>
-                    <li>angular-translate module offers simple translation functionality and provides a filter (and directive) that translates UI texts</li>
-                    <li>Translations can be loaded as static translation files or through backend endpoint.</li>
-                    <li><a href="https://github.com/gofore/angularjs-training/tree/master/funmarket/funmarket-front">Example using static translation files</a></li>
-                </ul>
-            </section>
-        </section>
-
-        <section>
             <h2>Testing AngularJS applications</h2>
         </section>
 
@@ -232,6 +219,11 @@
                 <pre><code>angular.module('app').controller('appController', function($scope, userDetailsResource, userResource) {
     $scope.userDetails = userDetailsResource.get();
     $scope.users = userResource.query();
+
+    $scope.selectedUser = null;
+    $scope.selectUser = function(user) {
+        $scope.selectedUser = user;
+    }
 });</code></pre>
             </section>
             <section>
@@ -257,13 +249,14 @@
         var usersUrl = '/api/users';
 
         var scope = $rootScope.$new();
-        $httpBackend.when('GET', userDetailsUrl).respond(userDetails);
-        $httpBackend.when('GET', usersUrl).respond(users);
-
-        $httpBackend.expectGET(userDetailsUrl);
-        $httpBackend.expectGET(usersUrl);
+        $httpBackend.expect('GET', userDetailsUrl).respond(userDetails);
+        $httpBackend.expect('GET', usersUrl).respond(users);
 
         $controller('appController', {$scope : scope});
+
+        scope.selectUser({name: 'Pekka'});
+
+        expect(scope.selectedUser.name).toEqual('Pekka');
 
         $httpBackend.flush();
 

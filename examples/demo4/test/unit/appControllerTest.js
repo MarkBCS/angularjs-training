@@ -1,3 +1,5 @@
+
+
 describe('appController', function() {
     var userDetails = {
         username : 'perttiesimerkki',
@@ -19,13 +21,14 @@ describe('appController', function() {
         var usersUrl = '/api/users';
 
         var scope = $rootScope.$new();
-        $httpBackend.when('GET', userDetailsUrl).respond(userDetails);
-        $httpBackend.when('GET', usersUrl).respond(users);
-
-        $httpBackend.expectGET(userDetailsUrl);
-        $httpBackend.expectGET(usersUrl);
+        $httpBackend.expect('GET', userDetailsUrl).respond(userDetails);
+        $httpBackend.expect('GET', usersUrl).respond(users);
 
         $controller('appController', {$scope : scope});
+
+        scope.selectUser({name: 'Pekka'});
+
+        expect(scope.selectedUser.name).toEqual('Pekka');
 
         $httpBackend.flush();
 

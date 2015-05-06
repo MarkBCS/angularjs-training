@@ -13,16 +13,16 @@ describe('createAdController', function() {
         $httpBackend = _$httpBackend_;
         apiUrl = funmarketApiUrl;
         $location = _$location_;
+
+        $httpBackend.expect('GET', 'locale/locale-fi.json').respond({});
     }));
 
     it('Will publish an ad', function(){
         var scope = $rootScope.$new();
         var publishUrl = apiUrl + '/marketads';
-        $httpBackend.when('POST', publishUrl).respond({});
+        $httpBackend.expect('POST', publishUrl).respond({});
 
         $location.path('/anotherroute'); //Set path to something else to verify the change
-
-        $httpBackend.expectPOST(publishUrl);
 
         $controller('CreateAdCtrl', {$scope : scope});
         scope.item = {};
@@ -40,13 +40,11 @@ describe('createAdController', function() {
         var expectedThumbnailUrl = 'expectedThumbnailUrl';
         var uploadUrl = apiUrl + '/images';
 
-        $httpBackend.when('POST', uploadUrl).respond({imageUrl : expectedImageUrl, thumbnailUrl : expectedThumbnailUrl});
-
-        $httpBackend.expectPOST(uploadUrl);
+        $httpBackend.expect('POST', uploadUrl).respond({imageUrl : expectedImageUrl, thumbnailUrl : expectedThumbnailUrl});
 
         $controller('CreateAdCtrl', {$scope : scope});
 
-        scope.upload([{}, {}]);
+        scope.upload([{}]);
 
         $httpBackend.flush();
 

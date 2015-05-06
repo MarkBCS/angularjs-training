@@ -6,6 +6,7 @@ describe('mainController', function() {
 
     beforeEach(inject(function(_$httpBackend_){
         $httpBackend = _$httpBackend_;
+        $httpBackend.expectGET('locale/locale-fi.json').respond({});
     }));
 
     it('Should fetch marketads', inject(function($controller, $rootScope, funmarketApiUrl){
@@ -13,8 +14,7 @@ describe('mainController', function() {
         var mockData = [{description: 'ad1'}, {description: 'ad2'}];
         var scope = $rootScope.$new();
 
-        $httpBackend.when('GET', queryUrl).respond(mockData);
-        $httpBackend.expectGET(queryUrl);
+        $httpBackend.expectGET(queryUrl).respond(mockData);
         $controller('MainCtrl', {$scope : scope});
         $httpBackend.flush();
 
