@@ -31,7 +31,16 @@ Esimerkki toimivasta konfiguraatiosta:
 
 ## Editorin asennus
 
-Vaihtoehtoisesti varmista, että käyttämässäsi editorissa/IDE:ssä on JavaScript ja nodejs-tuki aktivoituna. Huomaathan, että koulutuksen tarpeisiin riittää komentorivityökalujen rinnalle varsin hyvin esim. ilmainen atom.io (<https://atom.io/>).
+Vaihtoehtoisesti varmista, että käyttämässäsi editorissa/IDE:ssä on JavaScript ja nodejs-tuki aktivoituna. Huomaathan, että koulutuksen tarpeisiin riittää komentorivityökalujen rinnalle varsin hyvin esim. ilmainen Atom tai Sublime Text.
+
+### Atom
+
+- Ilmainen ja usein päivittyvä editori, jossa on kaikki tarvittava vakiona. (<https://atom.io/>)
+
+### Sublime Text
+
+- Joustava ja suosittu editori. Atomin esikuva. Ilmainen kokeiluversio ilman käyttörajoituksia. (<https://www.sublimetext.com/3>)
+- Asenna myös pakettienhallinta <https://packagecontrol.io/>.
 
 ### IntelliJ Idea
 
