@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/gofore.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+        <section>
+            <h1>Module 2.5</h1>
+            <h3>Tools and design</h3>
+        </section>
+
+        <section>
+          <section>
+              <h2>Composition through directives</h2>
+          </section>
+          <section>
+            <ul>
+              <li>Directives can be used to define custom html tags</li>
+              <li>Directives may have their own controller</li>
+              <li>So why not use them to create custom html components</li>
+            </ul>
+          </section>
+          <section>
+<pre><code><participants></code></pre>
+<pre><code>.directive('participants', () => ({
+    restrict: 'E',
+    template:
+      '<h1>Event Participant list</h1>
+       <p>Search participants: <input type="text" ng-model="search" value=""/></p>
+       <ol><li ng-repeat="participant in participants | filter:search">{{ participant.name }}</li></ol>',
+    controller: ['$scope', '$filter', 'participantService', ($scope, $filter, participantService) => {
+      participantService.participants.success((participants) => {
+        $scope.participants = $filter('orderBy')(participants, 'name')
+      })
+    }]
+}));</code></pre>
+          </section>
+          <section>
+            <p>Modularizing even more with browserify and stringify</p>
+<pre><code><participants></code></pre>
+<pre><code>.directive('participants', require('./directives/participants'))
+</code></pre>
+<pre><code>module.exports = () => ({
+    restrict: 'E',
+    template: require('../templates/participants.html'),
+    controller: ['$scope', '$filter', 'participantService', ($scope, $filter, participantService) => {
+      participantService.participants.success((participants) => {
+        $scope.participants = $filter('orderBy')(participants, 'name')
+      })
+    }]
+})</code></pre>
+<pre><code><h1>Event Participant list</h1>
+<p>Search participants: <input type="text" ng-model="search" value=""/></p>
+<ol><li ng-repeat="participant in participants | filter:search">{{ participant.name }}</li></ol>
+</code></pre>
+          </section>
+        </section>
+        <section>
+            <section>
+                <h2>Summary</h2>
+            </section>
+            <section>
+                <h2>Main Building Blocks in Angular Apps</h2>
+                <ul style="text-align: left">
+                    <li>Controllers</li>
+                    <li>Filters</li>
+                    <li>Directives</li>
+                    <li>Expressions</li>
+                    <li>Services and Factories</li>
+                    <li>Constants and Values</li>
+                    <li>Modules</li>
+                </ul>
+                </p>
+                <p>Dependencies between these building blocks are managed with Angular's dependency injection mechanisms
+                    (Providers)</p>
+            </section>
+            <section>
+                <img src="images/coreconceptrelations.jpg"/>
+            </section>
+            <section>
+                <h2>When Should I Create ...</h2>
+                <ul>
+                    <li><b>Filter:</b> when you find yourself repeating same
+                        data manipulation pattern
+                    </li>
+                    <li><b>Directive:</b> when you detect a common usage pattern
+                        in your templates
+                    </li>
+                    <li><b>Service:</b> when you detect a common usage
+                        patterns inside controllers or want to share functionality between controllers
+                    </li>
+                    <li><b>Constant or Value:</b> when you find yourself repeating same
+                        constant or value in your components
+                    </li>
+                    <li><b>Module:</b> to capsulate independent part of your application</li>
+                </ul>
+            </section>
+        </section>
+
+    </div>
+</div>
+
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+<script>
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {
+                src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            }
+            // { src: 'plugin/leap/leap.js', async: true }
+            // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+</script>
+</body>
+</html>
