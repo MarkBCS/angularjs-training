@@ -780,6 +780,24 @@ myApp.controller('NameListCtrl', function($scope) {
     }]
 }));</code></pre>
           </section>
+          <section>
+            <p>Modularizing even more with browserify and stringify</p>
+<pre><code>.directive('participants', require('./directives/participants'))
+</code></pre>
+<pre><code>module.exports = () => ({
+    restrict: 'E',
+    template: require('../templates/participants.html'),
+    controller: ['$scope', '$filter', 'participantService', ($scope, $filter, participantService) => {
+      participantService.participants.success((participants) => {
+        $scope.participants = $filter('orderBy')(participants, 'name')
+      })
+    }]
+})</code></pre>
+<pre><code><h1>Event Participant list</h1>
+<p>Search participants: <input type="text" ng-model="search" value=""/></p>
+<ol><li ng-repeat="participant in participants | filter:search">{{ participant.name }}</li></ol>
+</code></pre>
+          </section>
         </section>
         <section>
             <section>
