@@ -217,7 +217,7 @@
                     <li>You need a lightweight application and/or need to make an embeddable application</li>
                     <li>
                         When you require server-side rendering or search engine visibility
-                        (OK there are solutions, but they will be tricky)                        
+                        (OK there are solutions, but they will be tricky)
                     </li>
                 </ul>
             </section>
@@ -753,6 +753,33 @@ myApp.controller('NameListCtrl', function($scope) {
                     <li><b>link: ...</b> - Parse and clean values</li>
                 </ul>
             </section>
+        </section>
+        <section>
+          <section>
+              <h2>Composition through directives</h2>
+          </section>
+          <section>
+            <ul>
+              <li>Directives can be used to define custom html tags</li>
+              <li>Directives may have their own controller</li>
+              <li>So why not use them to create custom html components</li>
+            </ul>
+          </section>
+          <section>
+<pre><code><participants></code></pre>
+<pre><code>.directive('participants', () => ({
+    restrict: 'E',
+    template:
+      '<h1>Event Participant list</h1>
+       <p>Search participants: <input type="text" ng-model="search" value=""/></p>
+       <ol><li ng-repeat="participant in participants | filter:search">{{ participant.name }}</li></ol>',
+    controller: ['$scope', '$filter', 'participantService', ($scope, $filter, participantService) => {
+      participantService.participants.success((participants) => {
+        $scope.participants = $filter('orderBy')(participants, 'name')
+      })
+    }]
+}));</code></pre>
+          </section>
         </section>
         <section>
             <section>
