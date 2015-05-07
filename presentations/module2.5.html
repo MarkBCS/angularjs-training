@@ -43,6 +43,18 @@
                 <li>parses requires at compile time and creates a combined javascript file</li>
                 <li>enables to use transformations such as CoffeeScript and Babel</li>
                 <li>allows to embed non-javascript files directly using plugins such as stringify and browserify-plain-jade</li>
+                <li>node-type requires</li>
+<pre><code>// math.js
+module.exports = {
+  sum: function(a, b) {
+    return a + b
+  }
+}
+</code></pre>
+<pre><code>math = require('./math')
+
+math.sum(1, 2)
+</code></pre>
               </ul>
           </section>
           <section>
@@ -52,6 +64,10 @@
                 <li>also contains frontend libraries such as jQuery, lodash and Angular</li>
                 <li>browserify automatically looks for installed npm packages when requiring</li>
               </ul>
+<pre><code>npm install lodash --save-dev
+</code></pre>
+<pre><code>_ = require('underscore')
+</code></pre>
           </section>
           <section>
               <h2>Build tools</h2>
@@ -125,7 +141,7 @@ export function sum(x, y) {
 }
 </code></pre>
 <pre><code>import {sum} from './math'
-  
+
 console.log(sum(2,3))
 </code></pre>
           </section>
