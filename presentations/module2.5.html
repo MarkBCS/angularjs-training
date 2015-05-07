@@ -34,6 +34,98 @@
 
         <section>
           <section>
+              <h2>Tools</h2>
+          </section>
+          <section>
+              <h2>browserify</h2>
+              <ul>
+                <li><code>require</code> for browser</li>
+                <li>parses requires at compile time and creates a combined javascript file</li>
+                <li>enables to use transformations such as CoffeeScript and Babel</li>
+                <li>allows to embed non-javascript files directly using plugins such as stringify and browserify-plain-jade</li>
+              </ul>
+          </section>
+          <section>
+              <h2>npm</h2>
+              <ul>
+                <li>node package manager</li>
+                <li>also contains frontend libraries such as jQuery, lodash and Angular</li>
+                <li>browserify automatically looks for installed npm packages when requiring</li>
+              </ul>
+          </section>
+          <section>
+              <h2>Build tools</h2>
+              <ul>
+                <li>gulp – a build system that allows to run browserify and other tasks</li>
+                <li>browsersync – enables live reloading and synchronization between devices. Can be integrated into gulp.</li>
+                <li>sass, stylus, etc – preprocessors for css. Allow using a more concise syntax and add new features</li>
+                <li>jade – preprocessor for html. Allows writing html in a tree-like fashion</li>
+              </ul>
+          </section>
+          <section>
+              <h2>EcmaScript 6</h2>
+              <ul>
+                <li>ES6 is the next version of JavaScript</li>
+                <li>partial support in modern browsers, Babel allows to use it now</li>
+                <li>notable features
+                  <ul>
+                    <li>arrow function</li>
+                    <li>destructuring</li>
+                    <li>let, const</li>
+                  </ul>
+                </li>
+                <li>more <a href="https://github.com/lukehoban/es6features">https://github.com/lukehoban/es6features</a></li>
+              </ul>
+          </section>
+          <section>
+              <h2>ES6 – Arrow functions</h2>
+              <ul>
+                <li>shorter function definition, always anonymous</li>
+                <li>introduces no new scope (i.e. almost same as binding this)</li>
+              </ul>
+<pre><code>values.map(v => v + 1)
+
+(u, v) => u * v
+
+x => {
+  console.log(x)
+  return 3 * x
+}
+
+y => ({
+  value: y,
+  other: 3
+})
+</code></pre>
+          </section>
+          <section>
+              <h2>ES6 – let, const</h2>
+              <ul>
+                <li>block scoping instead of function scoping</li>
+                <li><code>let</code> is the new <code>var</code>, <code>const</code> is for constants</li>
+              </ul>
+<pre><code>function() {
+  let x = 3
+  if (true) {
+    let x = 4
+    console.log(x) // 4
+  }
+  console.log(x) // 3
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>Other tools</h2>
+            <ul>
+              <li>bower – Frontend package manager. No good way to fix version numbers, seems to break arbitrarily at some point. Use npm instead.</li>
+              <li>webpack – combines require, transformations and build into one tool. A notable alternative to browserify and gulp.</li>
+              <li>grunt – an older alternative to gulp. Nothing wrong in itself but very verbose configuration file. Use something else for new projects.</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
               <h2>Composition through directives</h2>
           </section>
           <section>
