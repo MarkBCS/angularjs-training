@@ -133,6 +133,7 @@ y => ({
               <li>Directives can be used to define custom html tags</li>
               <li>Directives may have their own controller</li>
               <li>So why not use them to create custom html components</li>
+              <li>This provides full encapsulation, modularity and reusable components</li>
             </ul>
           </section>
           <section>
@@ -190,6 +191,16 @@ p
 ol
   li(ng-repeat="participant in participants | filter:search") {{ participant.name }}
 </code></pre>
+          </section>
+          <section>
+            <h2>Best practices</h2>
+            <ul>
+              <li>Use directives for composition</li>
+              <li>Use nested directives</li>
+              <li>Most (if not all) of your controllers should be part of a directive</li>
+              <li>Move most of your business logic to services</li>
+              <li>If your controller is longer than 100 lines, you are likely doing something wrong</li>
+            </ul>
           </section>
         </section>
 
