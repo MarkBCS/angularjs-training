@@ -115,6 +115,21 @@ y => ({
 </code></pre>
           </section>
           <section>
+              <h2>ES6 – native modules</h2>
+              <ul>
+                <li>works with browserify and babel</li>
+              </ul>
+<pre><code>// math.js
+export function sum(x, y) {
+  return x + y
+}
+</code></pre>
+<pre><code>import {sum} from './math'
+  
+console.log(sum(2,3))
+</code></pre>
+          </section>
+          <section>
             <h2>Other tools</h2>
             <ul>
               <li>bower – Frontend package manager. No good way to fix version numbers, seems to break arbitrarily at some point. Use npm instead.</li>
