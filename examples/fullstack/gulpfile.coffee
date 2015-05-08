@@ -18,6 +18,10 @@ stylus       = require 'gulp-stylus'
 uglify       = require 'gulp-uglify'
 watchify     = require 'watchify'
 nodemon      = require 'nodemon'
+protractor   = require('gulp-protractor').protractor
+karma        = require('karma').server
+
+webdriver_update = require("gulp-protractor").webdriver_update
 
 production   = process.env.NODE_ENV is 'production'
 
@@ -136,6 +140,25 @@ gulp.task 'watch', ->
     gutil.log "Finished '#{chalk.cyan 'rebundle'}' after #{chalk.magenta prettyTime process.hrtime start}"
 
   .emit 'update'
+
+gulp.task 'webdriver_update', webdriver_update
+
+gulp.task 'karma', (cb) ->
+  karma.start
+    configFile: __dirname + '/test/karma.conf.js'
+    singleRun: true
+  , cb
+
+gulp.task 'test', ['webdriver_update', 'karma', 'server'], (cb) ->
+  gulp
+    .src ['./test/protractor/*.js']
+    .pipe protractor
+      configFile: 'test/protractor.conf.js'
+      args: ['--baseUrl', 'http://localhost:9000']
+    .on 'error', (e) ->
+      throw e
+    .on 'end', ->
+      process.exit() // ugly way to kill our server
 
 gulp.task 'no-js', ['templates', 'styles', 'assets']
 gulp.task 'build', ['scripts', 'no-js']
