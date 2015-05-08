@@ -175,6 +175,7 @@ console.log(sum(2,3))
 <pre><code><participants></code></pre>
 <pre><code>.directive('participants', () => ({
     restrict: 'E',
+    scope: {},
     template:
       '<h1>Event Participant list</h1>
        <p>Search participants: <input type="text" ng-model="search" value=""/></p>
@@ -193,6 +194,7 @@ console.log(sum(2,3))
 </code></pre>
 <pre><code>module.exports = () => ({
     restrict: 'E',
+    scope: {},
     template: require('../templates/participants.html'),
     controller: ['$scope', '$filter', 'participantService', ($scope, $filter, participantService) => {
       participantService.participants.success((participants) => {
@@ -212,6 +214,7 @@ console.log(sum(2,3))
 </code></pre>
 <pre><code>module.exports = () => ({
     restrict: 'E',
+    scope: {},
     template: require('../templates/participants.jade'),
     controller: ['$scope', '$filter', 'participantService', ($scope, $filter, participantService) => {
       participantService.participants.success((participants) => {
