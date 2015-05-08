@@ -95,10 +95,27 @@ math.sum(1, 2)
               </ul>
           </section>
           <section>
+              <h2>ES6 – <code>let</code>, <code>const</code></h2>
+              <ul>
+                <li>block scoping instead of function scoping</li>
+                <li><code>let</code> is like <code>var</code>, <code>const</code> is for constants</li>
+                <li><a href="https://docs.google.com/document/d/1Qk0qC4s_XNCLemj42FqfsRLp49nDQMZ1y7fwf5YjaI4/edit">Strong mode proposal</a> forbids <code>var</code> so it might be a good idea to start using <code>let</code> instead.</li>
+              </ul>
+<pre><code>function() {
+  let x = 3
+  if (true) {
+    let x = 4
+    console.log(x) // 4
+  }
+  console.log(x) // 3
+}
+</code></pre>
+          </section>
+          <section>
               <h2>ES6 – Arrow functions</h2>
               <ul>
                 <li>shorter function definition, always anonymous</li>
-                <li>introduces no new scope (i.e. almost the same as binding this)</li>
+                <li>lexical <code>this</code>, the function retains its parent's scope. Compare to <code>let</code>.</li>
               </ul>
 <pre><code>values.map(v => v + 1)
 
@@ -115,22 +132,6 @@ y => ({
 })
 
 () => console.log('bar')
-</code></pre>
-          </section>
-          <section>
-              <h2>ES6 – let, const</h2>
-              <ul>
-                <li>block scoping instead of function scoping</li>
-                <li><code>let</code> is the new <code>var</code>, <code>const</code> is for constants</li>
-              </ul>
-<pre><code>function() {
-  let x = 3
-  if (true) {
-    let x = 4
-    console.log(x) // 4
-  }
-  console.log(x) // 3
-}
 </code></pre>
           </section>
           <section>
