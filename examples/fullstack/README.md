@@ -19,11 +19,13 @@
 
 ## CLI Commands
 * npm install
-    * Installs server-side dependencies from NPM and client-side dependencies from Bower
+    * Installs dependencies and build tools from NPM
 * npm start
     * Compiles your files, starts watching files for changes, serves static files to port 9001
 * npm run build
     * Builds everything
+* npm test
+    * Runs tests
 
 Minification, uglification and other tasks you're expected to run before deploying your product can be made by running the build command with env variable NODE_ENV set to "production"
 
