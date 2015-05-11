@@ -1,5 +1,5 @@
-describe('Protractor Demo App', function() {
-  it('should have a title', function() {
+describe('Protractor Demo App', () => {
+  it('should have a title', () => {
     browser.get('/');
 
     expect(browser.getTitle()).toEqual('Angular template');

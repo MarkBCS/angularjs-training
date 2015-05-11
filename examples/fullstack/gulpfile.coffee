@@ -20,6 +20,7 @@ watchify     = require 'watchify'
 nodemon      = require 'nodemon'
 protractor   = require('gulp-protractor').protractor
 karma        = require('karma').server
+babel        = require 'gulp-babel'
 
 webdriver_update = require("gulp-protractor").webdriver_update
 
@@ -149,16 +150,18 @@ gulp.task 'karma', (cb) ->
     singleRun: true
   , cb
 
-gulp.task 'test', ['webdriver_update', 'karma', 'server'], (cb) ->
+gulp.task 'test', ['webdriver_update', 'server', 'build'], (cb) ->
   gulp
     .src ['./test/protractor/*.js']
+    .pipe babel()
+    .pipe gulp.dest('tmp') # protractor needs the files to be on disk
     .pipe protractor
       configFile: 'test/protractor.conf.js'
       args: ['--baseUrl', 'http://localhost:9000']
     .on 'error', (e) ->
       throw e
     .on 'end', ->
-      process.exit() // ugly way to kill our server
+      process.exit() # ugly way to kill our server
 
 gulp.task 'no-js', ['templates', 'styles', 'assets']
 gulp.task 'build', ['scripts', 'no-js']
