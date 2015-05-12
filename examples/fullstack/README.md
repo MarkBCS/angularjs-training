@@ -17,6 +17,12 @@
  open http://localhost:9001 in your browser
 ````
 
+### Windows workaround (skip binary stuff)
+
+```
+    npm install --ignore-scripts
+````
+
 ## CLI Commands
 * npm install
     * Installs dependencies and build tools from NPM
