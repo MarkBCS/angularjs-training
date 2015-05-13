@@ -32,6 +32,8 @@
     * Builds everything
 * npm test
     * Runs tests
+* NODE_ENV=production npm run build
+    * Create minified production build
 
 Minification, uglification and other tasks you're expected to run before deploying your product can be made by running the build command with env variable NODE_ENV set to "production"
 
