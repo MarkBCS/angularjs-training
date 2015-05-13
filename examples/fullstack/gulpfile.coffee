@@ -28,21 +28,21 @@ production   = process.env.NODE_ENV is 'production'
 
 config =
   scripts:
-    source: './front/js/main.js'
+    source: './src/front/js/main.js'
     extensions: ['.coffee']
     destination: './public/js/'
     filename: 'bundle.js'
   templates:
-    source: './front/html/*.jade'
-    watch: './front/html/*.jade'
+    source: './src/front/html/*.jade'
+    watch: './src/front/html/*.jade'
     destination: './public/'
   styles:
-    source: './front/css/style.styl'
-    watch: './front/css/*.styl'
+    source: './src/front/css/style.styl'
+    watch: './src/front/css/*.styl'
     destination: './public/css/'
   assets:
-    source: './front/assets/**/*.*'
-    watch: './front/assets/**/*.*'
+    source: './src/front/assets/**/*.*'
+    watch: './src/front/assets/**/*.*'
     destination: './public/'
 
 handleError = (err) ->
@@ -108,7 +108,7 @@ gulp.task 'assets', ->
 gulp.task 'server', ->
   nodemon
     script: 'server.js'
-    watch:  'server'
+    watch:  'src/server'
   browserSync
     open: false
     port: 9001
