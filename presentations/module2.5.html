@@ -241,6 +241,34 @@ ol
 
         <section>
           <section>
+            <h2>rest api design</h2>
+            <ul>
+              <li>Make your api responses look like your user interface, not like your database</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Angular minification</h2>
+            <ul>
+              <li>Angular's dependency injection works on parameter names</li>
+              <li>Minification renames parameters -> DI does not work</li>
+              <li>Solution: Angular allows you to pass an array together with the function <code>['$scope', function ($scope) {}]</code></li>
+              <li>Angular will inject the listed objects in the order they are gicing regardless of the actual function parameter names</li>
+            </ul>
+          </section>
+          <section>
+<pre><code>function test1 () {
+  return {
+    controller: ['$scope', '$filter', function ($scope, $filter) {
+      $scope.test = $filter
+    }]
+  }
+}</code></pre>
+<pre><code>function test1(){return{controller:["$scope","$filter",function(t,e){t.test=e}]}}</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
             <h2>Best practices</h2>
             <ul>
               <li>Use browserify, webpack, etc for modularity</li>
