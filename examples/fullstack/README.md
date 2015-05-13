@@ -23,6 +23,13 @@
     npm install --ignore-scripts
 ````
 
+## Adding dependencies
+
+* Frontend packages
+  * `npm install jquery --save-dev`
+* Backend and shared packages
+  * `npm install lodash`
+
 ## CLI Commands
 * npm install
     * Installs dependencies and build tools from NPM
@@ -32,8 +39,6 @@
     * Builds everything
 * npm test
     * Runs tests
-* NODE_ENV=production npm run build
-    * Create minified production build
 
 Minification, uglification and other tasks you're expected to run before deploying your product can be made by running the build command with env variable NODE_ENV set to "production"
 
@@ -42,4 +47,4 @@ Minification, uglification and other tasks you're expected to run before deployi
 ## Development guidelines
 * **public** - directory should be dedicated only to compiled/copied files from **src** - directory.
   It should be possible to delete directory completely and after **npm start** or **npm run build** everything should be as they were before the deletion.
-* All backend dependencies should be installed with **npm**. Browser dependencies should be installed with **bower** or with **npm**.
+* All dependencies should be installed with **npm**.
