@@ -9,12 +9,15 @@ gutil        = require 'gulp-util'
 jade         = require 'gulp-jade'
 notify       = require 'gulp-notify'
 path         = require 'path'
-prefix       = require 'gulp-autoprefixer'
 prettyTime   = require 'pretty-hrtime'
 source       = require 'vinyl-source-stream'
 sourcemaps   = require 'gulp-sourcemaps'
+postcss      = require 'gulp-postcss'
+cssnext      = require 'cssnext'
+autoprefixer = require 'autoprefixer-core'
+mqpacker     = require 'css-mqpacker'
+csswring     = require 'csswring'
 streamify    = require 'gulp-streamify'
-stylus       = require 'gulp-stylus'
 uglify       = require 'gulp-uglify'
 watchify     = require 'watchify'
 nodemon      = require 'nodemon'
@@ -37,8 +40,8 @@ config =
     watch: './src/front/html/*.jade'
     destination: './public/'
   styles:
-    source: './src/front/css/style.styl'
-    watch: './src/front/css/*.styl'
+    source: './src/front/css/style.css'
+    watch: './src/front/css/*.css'
     destination: './public/css/'
   assets:
     source: './src/front/assets/**/*.*'
@@ -82,15 +85,17 @@ gulp.task 'templates', ->
 
 gulp.task 'styles', ->
   styles = gulp.src config.styles.source
-  styles = styles.pipe(sourcemaps.init()) unless production
-  styles = styles.pipe stylus
-      'include css': true
 
+  plugins = [
+    cssnext()
+  ]
+  plugins.push mqpacker if production
+  plugins.push csswring if production
+  plugins.push autoprefixer({browsers: ['last 2 versions', 'Chrome 34', 'Firefox 28', 'iOS 7']})
+
+  styles = styles.pipe postcss(plugins)
     .on 'error', handleError
-    .pipe prefix 'last 2 versions', 'Chrome 34', 'Firefox 28', 'iOS 7'
 
-  styles = styles.pipe(CSSmin()) if production
-  styles = styles.pipe(sourcemaps.write '.') unless production
   styles = styles.pipe gulp.dest config.styles.destination
 
   unless production
