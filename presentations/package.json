@@ -1,0 +1,12 @@
+{
+  "name": "presentations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "",
+    "start": "reveal-md --theme night"
+  },
+  "author": "",
+  "license": "ISC"
+}
