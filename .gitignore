@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-*.iml
-.idea
-=======
 target
 *.iml
 *.idea
 data
->>>>>>> Added funmarket server poc
