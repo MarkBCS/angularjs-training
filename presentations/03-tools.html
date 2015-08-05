@@ -166,80 +166,6 @@ console.log(sum(2,3))
 
         <section>
           <section>
-              <h2>Angular – Composition through directives</h2>
-          </section>
-          <section>
-            <ul>
-              <li>Directives can be used to define custom html tags</li>
-              <li>Directives may have their own controller</li>
-              <li>So why not use them to create custom html components</li>
-              <li>This provides full encapsulation, modularity and reusable components</li>
-              <li><a href="https://github.com/gofore/angularjs-training/tree/master/examples/fullstack">Full example</a> with gulp and browserify</li>
-            </ul>
-          </section>
-          <section>
-<pre><code><participants></code></pre>
-<pre><code>.directive('participants', () => ({
-    restrict: 'E',
-    scope: {},
-    template:
-      '<h1>Event Participant list</h1>
-       <p>Search participants: <input type="text" ng-model="search" value=""/></p>
-       <ol><li ng-repeat="participant in participants | filter:search">{{ participant.name }}</li></ol>',
-    controller: ['$scope', '$filter', 'participantService', ($scope, $filter, participantService) => {
-      participantService.participants.success((participants) => {
-        $scope.participants = $filter('orderBy')(participants, 'name')
-      })
-    }]
-}));</code></pre>
-          </section>
-          <section>
-            <p>Modularizing even more with browserify and stringify</p>
-<pre><code><participants></code></pre>
-<pre><code>.directive('participants', require('./directives/participants'))
-</code></pre>
-<pre><code>module.exports = () => ({
-    restrict: 'E',
-    scope: {},
-    template: require('../templates/participants.html'),
-    controller: ['$scope', '$filter', 'participantService', ($scope, $filter, participantService) => {
-      participantService.participants.success((participants) => {
-        $scope.participants = $filter('orderBy')(participants, 'name')
-      })
-    }]
-})</code></pre>
-<pre><code><h1>Event Participant list</h1>
-<p>Search participants: <input type="text" ng-model="search" value=""/></p>
-<ol><li ng-repeat="participant in participants | filter:search">{{ participant.name }}</li></ol>
-</code></pre>
-          </section>
-          <section>
-            <p>And with jade</p>
-<pre><code>participants</code></pre>
-<pre><code>.directive('participants', require('./directives/participants'))
-</code></pre>
-<pre><code>module.exports = () => ({
-    restrict: 'E',
-    scope: {},
-    template: require('../templates/participants.jade'),
-    controller: ['$scope', '$filter', 'participantService', ($scope, $filter, participantService) => {
-      participantService.participants.success((participants) => {
-        $scope.participants = $filter('orderBy')(participants, 'name')
-      })
-    }]
-})</code></pre>
-<pre><code>h1 Event Participant list
-p
-  | Search participants:
-  input(type="text" ng-model="search" value="")
-ol
-  li(ng-repeat="participant in participants | filter:search") {{ participant.name }}
-</code></pre>
-          </section>
-        </section>
-
-        <section>
-          <section>
             <h2>rest api design</h2>
             <ul>
               <li>Make your api responses look like your user interface, not like your database</li>
@@ -265,21 +191,6 @@ ol
 <pre><code>function test1(){return{controller:["$scope","$filter",function(t,e){t.test=e}]}}</code></pre>
           </section>
         </section>
-
-        <section>
-          <section>
-            <h2>Best practices</h2>
-            <ul>
-              <li>Use browserify, webpack, etc for modularity</li>
-              <li>Use directives for composition</li>
-              <li>Use nested directives</li>
-              <li>Most (if not all) of your controllers should be part of a directive</li>
-              <li>Move most of your business logic to services</li>
-              <li>If your controller is longer than 100 lines, you are likely doing something wrong</li>
-            </ul>
-          </section>
-        </section>
-
     </div>
 </div>
 

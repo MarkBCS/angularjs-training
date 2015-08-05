@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/gofore.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+</head>
+<body>
+<div class="reveal">
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+
+<section>
+    <section>
+        <h2>Directives</h2>
+    </section>
+    <section>
+        <ul>
+            <li>Directives encapsulate a component or a functionality to a single html tag, attribute or classname</li>
+            <u>
+                <li>
+                    AngularJS comes with some built-in directives (ng-bind, ng-repeat etc.)
+                </li>
+                <li>
+                    You can also write your own directives
+                </li>
+            </u>
+            <li>Directives usually have their own template and script logic</li>
+            <li>Often it is better to use directives than controller code</li>
+            <ul>
+                <li>Directives provide encapsulation for a piece of functionality</li>
+                <li>Directives can be reused, controllers cannot</li>
+                <li>Application becomes much easier to understand when it is broken down into smaller locigal "modules"</li>
+            </ul>
+        </ul>
+    </section>
+    <section>
+        <h2>Simple directive example</h2>
+        <pre><code><my-directive></my-directive></code></pre>
+<pre><code>
+myApp.directive('myDirective', function() {
+    return {
+        restrict : 'E',
+        replace : true,
+        template : '<div>Hello {{ name }}</div>',
+        controller : function($scope) {
+            $scope.name = 'Superhero';
+        }
+    }
+});
+</code></pre>
+    <a href="https://jsfiddle.net/rautamar/zfd9syb6/">https://jsfiddle.net/rautamar/zfd9syb6/</a>
+    </section>
+    <section>
+        <h2>Directive scope</h2>
+        <ul>
+            <li>By default directive uses the scope of its parent controller (or other directive)</li>
+            <li>Sometimes this maybe useful but usually it is better to isolate directive scope.</li>
+            <li>Use scope property in directive definition to define isolated scope</li>
+            <ul>
+                <li>Properties defined inside scope can be accessed (and bound to) from outside of the directive</li>
+            </ul>
+        </ul>
+    </section>
+    <section>
+        <h2>Directive isolate scope</h2>
+        <pre><code><my-directive hello-to="superhero"></my-directive></code></pre>
+<pre><code>
+myApp.directive('myDirective', function() {
+    return {
+        restrict : 'E',
+        replace : true,
+        template : '<div>Hello {{ helloTo }}</div>',
+        scope : {
+            helloTo : '@'
+        }
+    }
+});
+</code></pre>
+    <a href="https://jsfiddle.net/rautamar/snzqhLLd/">https://jsfiddle.net/rautamar/snzqhLLd/</a>
+    </section>
+    <section>
+        <h2>Directive two-way data binding</h2>
+
+        <pre><code>myApp.controller('myController', function ($scope) {
+    $scope.inputValue = "Initial value";
+});
+myApp.directive('myDirective', function () {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<div><input ng-model="currentValue"><button ng-click="update()">Update</button></div>',
+        scope: {
+            inputValue: '='
+        },
+        controller: function ($scope) {
+            $scope.currentValue = $scope.inputValue;
+            $scope.update = function () {
+                $scope.inputValue = $scope.currentValue;
+            }
+        }
+    }
+});</code></pre>
+        <a href="https://jsfiddle.net/rautamar/cez6Lvro/">https://jsfiddle.net/rautamar/cez6Lvro/</a>
+    </section>
+    <section>
+        <h2>Directive link function</h2>
+        <p>Sometimes DOM modification is needed in a directive. Do not do DOM modification in the controller! Use link function instead.</p>
+        <pre><code>myApp.directive('myDirective', function () {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<div></div>',
+        scope: {},
+        link: function ($scope, element, attributes) {
+            element.append('<span>Modified dom contents</span>');
+        }
+    }
+});
+        </code></pre>
+
+        <a href="https://jsfiddle.net/rautamar/r0z1nvqg/">https://jsfiddle.net/rautamar/r0z1nvqg/</a>
+
+    </section>
+
+    <section>
+    <h2>Directive best practives</h2>
+        <ul>
+            <li>Usually you can't go wrong using a directive to capsulate any single UI functionality. So use them often. Use angular controllers sparingly.</li>
+            <li>Directive should only contain code that defines it's UI interactions.</li>
+            <ul>
+                <li>Directives are easier to reuse, if they are separated from application business logic.</li>
+                <li>A good place for application business logic is in services.</li>
+            </ul>
+            <li>Use directive controller function in normal cases, where DOM manipulation is not needed</li>
+            <li>Use directive link function when for instance some JQuery magic and/or DOM manipulation is needed</li>
+        </ul>
+    </section>
+
+</div>
+</div>
+
+
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+<script>
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {
+                src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            }
+            // { src: 'plugin/leap/leap.js', async: true }
+            // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+</script>
+</body>
+</html>
