@@ -141,3 +141,9 @@ Model-View-ViewModel (MVVM) framework with templates
 - [Router](https://github.com/angular/router) backported to Angular 1.4
 
 **Watch closely, but use 1.x series today**
+
+----
+
+## [AngularJS 2 demo](https://jsfiddle.net/rautamar/1y0tw6zf/)
+
+---
