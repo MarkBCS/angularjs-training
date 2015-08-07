@@ -28,20 +28,24 @@
 <div class="slides">
 
 <section>
+    <h2>Directives and Architecture</h2>
+</section>
+
+<section>
     <section>
-        <h2>Directives</h2>
+        <h2>AngularJS directives</h2>
     </section>
     <section>
         <ul>
             <li>Directives encapsulate a component or a functionality to a single html tag, attribute or classname</li>
-            <u>
+            <ul>
                 <li>
                     AngularJS comes with some built-in directives (ng-bind, ng-repeat etc.)
                 </li>
                 <li>
                     You can also write your own directives
                 </li>
-            </u>
+            </ul>
             <li>Directives usually have their own template and script logic</li>
             <li>Often it is better to use directives than controller code</li>
             <ul>
@@ -153,7 +157,35 @@ myApp.directive('myDirective', function () {
             <li>Use directive link function when for instance some JQuery magic and/or DOM manipulation is needed</li>
         </ul>
     </section>
-
+</section>
+<section>
+    <section>
+        <h2>AngularJS application architecture</h2>
+    </section>
+    <section>
+        <ul>
+            <li>Use directives to break UI into modules</li>
+            <li>Directives should only contain user action and other directive internal functionality</li>
+            <ul>
+                <li>Goal is to make directive as loosely dependent on the surrounding application as possible</li>
+            </ul>
+            <li>Application wide business logic and UI in-memory data should be kept in services</li>
+            <ul>
+                <li>Any component can access singleton services by dependency injection</li>
+            </ul>
+            <li>Directives can broadcast events from the root scope. Other directives can listen and react to these events.</li>
+        </ul>
+    </section>
+</section>
+<section>
+    <section>
+        <h2>Exercise</h2>
+        <ul>
+            <li>clone https://github.com/gofore/angular-mini-seed.git</li>
+            <li>Create a "todo list" using a directive</li>
+        </ul>
+    </section>
+</section>
 </div>
 </div>
 
