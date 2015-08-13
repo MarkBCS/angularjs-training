@@ -56,7 +56,7 @@ Alternatively or in addition, you can download and install Atom (<https://atom.i
 
 Make a copy of angular-seed project into your work folder:
 
-    git clone https://github.com/angular/angular-seed
+    https://github.com/gofore/angular-mini-seed
 
 Ensure your tool setup works by starting the project with:
 
@@ -70,7 +70,7 @@ If everything works, you should see the sample application.
 
 ### Step 4: Setup test frameworks
 
-If you attend the testing part of the lesson, install the following tools:
+**If you attend the testing part of the training**, install the following tools:
 
     npm install -g karma-cli
     npm install -g protractor
