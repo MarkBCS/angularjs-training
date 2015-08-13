@@ -59,7 +59,11 @@ Vaihtoehtoisesti varmista, että käyttämässäsi editorissa/IDE:ssä on JavaSc
 
 Tee itsellesi työhakemistoon kopio angular-seed -projektista:
 
-<https://github.com/angular/angular-seed>
+<https://github.com/gofore/angular-mini-seed>
+
+Helpoiten saat tehtyä kopion git clonella:
+
+    git clone https://github.com/gofore/angular-mini-seed.git
 
 Tarkista, että projektin kehitysympäristö käynnistyy komennolla:
 
