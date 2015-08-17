@@ -100,6 +100,8 @@ As a final verification step, run the tools against fresh copy of Angular seed p
 
 ### Day 2
 - [AngularJS directives](presentations/04-directives.html)
-- [Automated testing](presentations/05-testing.html)
+- [Promises](presentations/05-promises.html)
+- [Routing](presentations/06-routing.html)
+- [Automated testing](presentations/07-testing.html)
 
 

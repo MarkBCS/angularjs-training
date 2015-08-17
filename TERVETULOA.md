@@ -94,3 +94,17 @@ Varmista lopuksi, että testaussovellukset toimivat ajamalla läpi muokkaamattom
     git clone https://github.com/angular/angular-seed angular-seed-tests
     cd angular-seed-tests
     npm test
+    
+### Agenda
+
+### Päivä 1
+
+- [SPA sovellusten perusteet](presentations/01-intro-to-spa.md)
+- [AngularJS perusteet](presentations/02-angular-intro.html)
+- [Asynkroninen datan haku](presentations/03-async-and-network.html)
+
+### Day 2
+- [AngularJS direktiivit](presentations/04-directives.html)
+- [Promiset](presentations/05-promises.html)
+- [Routing](presentations/06-routing.html)
+- [Automaattitestit](presentations/07-testing.html)

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/gofore.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <section>
+            <section>
+                <h2>Promises</h2>
+            </section>
+            <section>
+                <h2>A promise object is a representation of asynchronous data, that may still be pending, hold a value of successful async call or an error value of unsuccessful call.</h2>
+            </section>
+            <section>
+                <ul>
+                    <li>In AngularJS applications, it is recommended to use promises to hold data fetched from backend.</li>
+                    <li>Promises are easy to cache using services</li>
+                    <li>Promise chaining is more elegant way to chain asynchronous calls than callback "pyramid".</li>
+                    <ul>
+                        <li>More clean and intuitive syntax</li>
+                        <li>Error handling in one place</li>
+                    </ul>
+                </ul>
+            </section>
+            <section>
+                <h2>Promise Contract</h2>
+                <ul>
+                    <li>Three possible states: <b>pending, fulfilled, rejected</b></li>
+                    <li><b>Pending</b> promise can only transtion to <i>fufilled</i> or <i>rejected</i></li>
+                    <li><b>Fulfilled</b> promise may not transtion to any other state and must have value that doesn't change</li>
+                    <li><b>Rejected</b> promise may not transtion to any other state and must have a reason that doesn't change</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>AngularJS promise api - $q</h2>
+
+                <ul>
+                    <li>A value that promise holds is always retrieved by using a callback.</li>
+                    <li>then(successCallback, errorCallback, notifyCallback) function is used to retrieve promise value</li>
+                    <li>catch(errorCallback) is another way to register error callback to promise. Especially handly with chaining promises.</li>
+                    <li>finally(callback, notifycallback) is always triggered whether promise is resolved or rejected. Handly for cleanup tasks such as stopping loader spinners etc.</li>
+                </ul>
+
+                <a href="https://jsfiddle.net/rautamar/sL5w3k4b/">https://jsfiddle.net/rautamar/sL5w3k4b/</a>
+
+
+            </section>
+
+            <section>
+                <h2>Promise chaining</h2>
+                <ul>
+                    <li>Calling then function on promise object returns another promise</li>
+                    <li>This another promise is immediately resolved if successcallback of first promise returns value. If successcallback return promise, another promise is resolved once the promise returned by successcallback is resolved.</li>
+                    <li>catch(errorCallback) can be used to handle error anywhere in the promise chain. Error happens if any of the chain promises get rejected or exception is thrown inside promise chain</li>
+                </ul>
+
+                <a href="https://jsfiddle.net/rautamar/rwpzdh8w/">https://jsfiddle.net/rautamar/rwpzdh8w/</a>
+
+            </section>
+        </section>
+    </div>
+</div>
+
+
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+<script>
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {
+                src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            }
+            // { src: 'plugin/leap/leap.js', async: true }
+            // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+</script>
+</body>
+</html>
