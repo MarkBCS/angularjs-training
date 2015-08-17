@@ -88,3 +88,18 @@ As a final verification step, run the tools against fresh copy of Angular seed p
     git clone https://github.com/angular/angular-seed angular-seed-tests
     cd angular-seed-tests
     npm test
+    
+    
+### Training agenda
+
+### Day 1
+
+- [Introduction to single page applications](presentations/01-intro-to-spa.md)
+- [Introduction to AngularJS](presentations/02-angular-intro.html)
+- [Async and network programmins](presentations/03-async-and-network.html)
+
+### Day 2
+- [AngularJS directives](presentations/04-directives.html)
+- [Automated testing](presentations/05-testing.html)
+
+
