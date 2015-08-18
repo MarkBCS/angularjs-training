@@ -2,7 +2,24 @@
 
 angular.module('funchat', [])
 
+  .filter('markOwnMessage', function() {
+    return function(messages, username) {
+      if(messages) {
+        for(var i = 0; i < messages.length; i++) {
+          var message = messages[i];
+          if(message.author === username) {
+            message.own = true;
+          }
+        }
+      }
+      return messages;
+    }
+  })
+
   .controller('appController', function($scope, FunchatApi) {
+
+    var username = "Marko";
+    $scope.username = username;
 
     function listMessages() {
       FunchatApi.list().then(function(messages) {
@@ -11,7 +28,7 @@ angular.module('funchat', [])
     }
 
     $scope.post = function() {
-      FunchatApi.post('Marko(Gofore)', $scope.newMessage).then(listMessages);
+      FunchatApi.post(username, $scope.newMessage).then(listMessages);
       $scope.newMesasge = undefined;
     }
 

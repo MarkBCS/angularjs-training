@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>My AngularJS App</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
 </head>
 <body ng-controller="appController">
-
+  <h1>Funchat</h1>
   <div>
       <input type="text" ng-model="newMessage"><button ng-click="post()">Post</button>
       <ul>
-          <li ng-repeat="message in messages | orderBy:created:false"><b>{{message.created | date:'HH:mm:ss' }} {{message.author}}</b> : {{message.content}}</li>
+          <li ng-class="{'own-message' : message.own}" ng-repeat="message in messages | orderBy:created:false | markOwnMessage:username"><b>{{message.created | date:'HH:mm:ss' }} {{message.author}}</b> : {{message.content}}</li>
       </ul>
   </div>
 
