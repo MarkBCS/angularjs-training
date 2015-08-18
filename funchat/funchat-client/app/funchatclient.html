@@ -1,6 +1,0 @@
-<div>
-    <input type="text" ng-model="newMessage"><button ng-click="post()">Post</button>
-    <ul>
-        <li ng-repeat="message in messages | orderBy:created:false"><b>{{message.created | date:'HH:mm:ss' }} {{message.author}}</b> : {{message.content}}</li>
-    </ul>
-</div>
