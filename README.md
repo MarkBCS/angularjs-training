@@ -99,9 +99,10 @@ As a final verification step, run the tools against fresh copy of Angular seed p
 - [Async and network programming](presentations/03-async-and-network.html)
 
 ### Day 2
-- [AngularJS directives](presentations/04-directives.html)
-- [Promises](presentations/05-promises.html)
-- [Routing](presentations/06-routing.html)
-- [Automated testing](presentations/07-testing.html)
+- [Resources](presentations/04-resources.html)
+- [Directives](presentations/05-directives.html)
+- [Promises](presentations/06-promises.html)
+- [Routing](presentations/07-routing.html)
+- [Testing](presentations/08-testing.html)
 
 
