@@ -35,12 +35,11 @@
             </section>
             <section>
                 <ul>
-                    <li>In AngularJS applications, it is recommended to use promises to hold asynchronously fetched data from backend.</li>
-                    <li>Promises are easy to cache using services</li>
-                    <li>Promise chaining is more elegant way to chain asynchronous calls than callback "pyramid".</li>
+                    <li>In AngularJS calls to $http or $resource  automatically generate promises</li>
+                    <li>Promises are a great way to store data in services. Services can be injected anywhere they are needed.</li>
+                    <li>Promises can be chained to create a single promise of multiple asyncronous operations.</li>
                     <ul>
-                        <li>Combine a chain of asynchronous operations into single promise</li>
-                        <li>More clean and intuitive syntax</li>
+                        <li>More elegant and intuitive than traditional "callback pyramid".</li>
                         <li>Error handling in one place</li>
                     </ul>
                 </ul>
@@ -59,10 +58,10 @@
                 <h2>AngularJS Deferred api - $q</h2>
 
                 <ul>
-                    <li>$http and $resoure services use promises. Sometimes it maybe however useful to be able to create new promise instances:</li>
+                    <li>Deferreds are a way to create promises and control the state of associated promises</li>
                     <li>New deferred instance is created with $q service calling defer() method</li>
                     <li>Deferred object has an associated promise object whose status is determined by the resolution of the deferred object .</li>
-                    <li>Deferred instances promise object can be attained from deferredInstance.promise property</li>
+                    <li>Deferred instances promise object can be attained from deferred.promise property</li>
                     <li>While deferred is neither resolved or rejected, promise is pending </li>
                     <li>If deferred is resolved, using resolve() promise gets fullfilled</li>
                     <li>If deferred is rejected, using reject() promise gets rejected</li>
