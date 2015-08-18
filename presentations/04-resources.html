@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Introduction to AngularJS</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/gofore.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+    <h2>Resources</h2>
+</section>
+
+
+<section>
+
+    <section>
+        <h2>Angular resources - $resource</h2>
+    </section>
+
+    <section>
+        <h3>$resource is a recommended way to work with server side resources</h3>
+        <ul>
+            <li>Higher-level service for accessing RESTful resources</li>
+            <li>Provides basic crud operations automatically to a backend resource endpoint</li>
+            <li>Uses $http in the background</li>
+            <li>$resource is implemented in a separate module (ngResource) - not built into angular by default</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>resource factory</h2>
+        <ul>
+            <li>$resource is just a function (factory) that takes 1-4 parameters</li>
+            <ul>
+                <li>Parametrized Url</li>
+                <li>Param defaults (optional)</li>
+                <li>Actions (optional)</li>
+                <li>Options (optional)</li>
+            </ul>
+        </ul>
+        <p>General usage: </p>
+        <pre><code>$resource(url, [paramDefaults], [actions], options);</code></pre>
+        <p>Example usage:</p>
+        <pre><code>$resource('videorepository.com/items/:id', {id: '@id'})</code></pre>
+
+    </section>
+    <section>
+        <h3>Resource object</h3>
+        <p>Calling $resource factory returns an resource object containing 5 default actions + all optional actions defined</p>
+                <pre><code>{
+'get': {method:'GET'},
+'save':   {method:'POST'},
+'query':  {method:'GET', isArray:true},
+'remove': {method:'DELETE'},
+'delete': {method:'DELETE'}
+};</code></pre>
+
+    </section>
+
+    <section>
+
+        <p>You can bind the result of a resource objects method call directly into scope. The view is automatically populated when the data arrives</p>
+
+        <pre><code>var videoResource = $resource('videorepository.com/items/:id', {id: '@id'});
+$scope.video = videoResource.get({id: '13456'});</code></pre>
+
+        <pre><code><ul>
+    <li>Title : {{video.title}}</li>
+    <li>Director : {{video.director}}</li>
+ </ul></code></pre>
+
+    </section>
+
+    <section>
+
+        <p>Alternatively you can extract the promise object from resource method call</p>
+                <pre><code>var Video = $resource('videorepository.com/items/:id', {id: '@id'})
+Video.get({id: '12345'}).$promise.then(function(data){
+    //handle data
+})</code></pre>
+        <p>Or you can defined success and reject callback functions as 2nd and 3rd params for a resource action call</p>
+                <pre><code>var Video = $resource('videorepository.com/items/:id', {id: '@id'})
+Video.get({id: '12345'}, function(data){
+    //success
+}, function(error) {
+   //much fail
+}))</code></pre>
+    </section>
+
+    <section>
+        <p>You can also define custom methods to resource object</p>
+        <ul>
+            <li>See <a href="http://docs.angularjs.org/api/ngResource/service/$resource">$resource api</a> for configuration options</li>
+        </ul>
+                <pre><code>var videoResource = $resource('videorepository.com/items/', {},{
+    getVideosCustom: {method: 'GET', isArray: true, interceptor: {response : function(r)
+        {
+            // do something with response
+            return response;
+        }}}
+});
+
+videoResource.getVideosCustom().$promise.then(function(data){
+    //handle data
+})</code></pre>
+
+    </section>
+</section>
+
+<section>
+    <h2>Excercise: Refactor your funchat code to make use of $resource instead of $http</h2>
+    <p>hint: use bower to fetch ngResource module: bower install angular-resource --save</p>
+</section>
+
+
+
+<!-- Any section element inside of this container is displayed as a slide -->
+</div>
+</div>
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+<script>
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {
+                src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            }
+            // { src: 'plugin/leap/leap.js', async: true }
+            // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+</script>
+</body>
+</html>
