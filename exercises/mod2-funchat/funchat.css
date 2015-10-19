@@ -1,0 +1,7 @@
+.note {
+	border: 1px solid black;
+	background: red;
+	color: white;
+	position: absolute;
+	right: 0;
+}
