@@ -2,5 +2,5 @@
 // change as necessary
 module.exports = {
 	port: process.env.PORT || 3000,
-	mongodb_url: process.env.MONGOHQ_URL || 'mongodb://localhost:27017'
+	mongodb_url: process.env.MONGODB_URI || 'mongodb://localhost:27017'
 };
